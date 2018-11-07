@@ -10,9 +10,9 @@ type tfsqlDriver struct{}
 
 // 打开一个新连接
 func (d *tfsqlDriver) Open(dsn string) (driver.Conn, error) {
-	var err error
+	conn := &tfsqlConn{}
 
-	return nil, err
+	return conn, nil
 }
 
 func init() {

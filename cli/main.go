@@ -13,5 +13,12 @@ func main() {
 	}
 
 	fmt.Println(db)
+	rows, err := db.Query("select exchange, code from stock where status = ?", 1)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(rows.Columns())
+	defer rows.Close()
 	db.Close()
 }
