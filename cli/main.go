@@ -12,13 +12,27 @@ func main() {
 		fmt.Println(err.Error())
 	}
 
-	fmt.Println(db)
+	//fmt.Println(db)
 	rows, err := db.Query("select exchange, code from stock where status = ?", 1)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println(rows.Columns())
+
+	var (
+		exchange string
+		code     int
+	)
+
+	for rows.Next() {
+		err := rows.Scan(&exchange, &code)
+		if err != nil {
+			//fmt.Println(err)
+			break
+		}
+		fmt.Println(exchange, code)
+	}
+	//fmt.Println(rows.Columns())
 	defer rows.Close()
 	db.Close()
 }

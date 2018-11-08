@@ -11,6 +11,7 @@ func (stmt *tfsqlStmt) Close() (err error) {
 	return nil
 }
 
+// 返回参数个数
 func (stmt *tfsqlStmt) NumInput() int {
 	return 1
 }
@@ -20,5 +21,6 @@ func (stmt *tfsqlStmt) Exec(args []driver.Value) (driver.Result, error) {
 }
 
 func (stmt *tfsqlStmt) Query(args []driver.Value) (driver.Rows, error) {
-	return &tfsqlRows{}, nil
+	//fmt.Println(args)
+	return &tfsqlRows{1, 0}, nil
 }
