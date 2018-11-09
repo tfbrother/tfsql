@@ -34,5 +34,22 @@ func main() {
 	}
 	//fmt.Println(rows.Columns())
 	defer rows.Close()
+
+	stmt, err := db.Prepare("delete from agent_statis where id=?")
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+	defer stmt.Close()
+	if result, err := stmt.Exec(1000); err == nil {
+		if affected, err := result.RowsAffected(); err == nil {
+			if insertID, err := result.LastInsertId(); err == nil {
+				fmt.Println("RowsAffected : ", affected, "LastInsertId : ", insertID)
+			} else {
+				fmt.Println("RowsAffected : ", affected)
+			}
+
+		}
+	}
 	db.Close()
 }

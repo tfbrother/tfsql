@@ -17,7 +17,8 @@ func (stmt *tfsqlStmt) NumInput() int {
 }
 
 func (stmt *tfsqlStmt) Exec(args []driver.Value) (driver.Result, error) {
-	return nil, nil
+	var result = &tfsqlResult{1, 1000}
+	return result, nil
 }
 
 // 执行真正的查询操作，然后返回结果级
