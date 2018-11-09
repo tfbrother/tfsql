@@ -13,24 +13,24 @@ func main() {
 	}
 
 	//fmt.Println(db)
-	rows, err := db.Query("select exchange, code from stock where status = ?", 1)
+	rows, err := db.Query("select name, age from stock where status = ?", 1)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
 	var (
-		exchange string
-		code     int
+		name string
+		age  int
 	)
 
 	for rows.Next() {
-		err := rows.Scan(&exchange, &code)
+		err := rows.Scan(&name, &age)
 		if err != nil {
 			//fmt.Println(err)
 			break
 		}
-		fmt.Println(exchange, code)
+		fmt.Println(name, age)
 	}
 	//fmt.Println(rows.Columns())
 	defer rows.Close()

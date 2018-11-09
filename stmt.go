@@ -20,7 +20,13 @@ func (stmt *tfsqlStmt) Exec(args []driver.Value) (driver.Result, error) {
 	return nil, nil
 }
 
+// 执行真正的查询操作，然后返回结果级
 func (stmt *tfsqlStmt) Query(args []driver.Value) (driver.Rows, error) {
+	var rowDatas [2][2]string
+	rowDatas[0][0] = "天府兄弟"
+	rowDatas[0][1] = "22"
+	rowDatas[1][0] = "天府少年"
+	rowDatas[1][1] = "12"
 	//fmt.Println(args)
-	return &tfsqlRows{1, 0}, nil
+	return &tfsqlRows{2, 0, &rowDatas}, nil
 }
