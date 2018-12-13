@@ -5,6 +5,7 @@ import (
 	"io"
 )
 
+// TODO 实现的是driver.Rows接口迭代器，这种迭代器思想在后面的数据结构中遍历时用处非常大
 type tfsqlRows struct {
 	totalNum int           //保存当前当前结果级中的行总数，也是用于Next方法使用
 	nowPtr   int           //保存当前遍历到了结果级中的那一行数据，主要是用于Next方法使用
